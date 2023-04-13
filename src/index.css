@@ -1,0 +1,83 @@
+body {
+  background-image: url('https://thumbs.gfycat.com/AdeptFalseJunco-size_restricted.gif');
+  background-size: cover;
+  background-position: center;
+  font-family: sans-serif;
+}
+
+
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 1rem;
+}
+
+
+/* media queries */
+@media screen and (max-width: 600px) {
+  /* styles for screens smaller than 600px */
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  /* styles for screens smaller than 400px */
+  body {
+    font-size: 12px;
+  }
+  
+  .container {
+    padding: 0 0.25rem;
+  }
+}
