@@ -1,6 +1,10 @@
 # BroadcastManager
 Generate Broadcast short and long descriptions and determine which tier the broadcast belongs. The Descriptions are for Lichess Broadcasts, but can be used in any Chess tournament descriptions could be online or OTB.
 
+# Remarks
+
+This site is orginally based on Terminal program Description program which was made in Python see [here](https://github.com/jalpp/BroadcastDescGenerator)
+
 # Run Local
 
 ```
