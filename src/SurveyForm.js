@@ -295,9 +295,6 @@ const SurveyForm = () => {
         <a href="https://github.com/lichess-org/pgn-mule"> Mule doc (Technical Github/README)</a>
       </li>
       <li>
-        <a href="https://github.com/lichess-org/pgn-mule"> Mule doc (Technical Github/README)</a>
-      </li>
-      <li>
         <p> 
           Mule Discord Bot Commands
           prefix `!` - mule 1
@@ -319,7 +316,7 @@ const SurveyForm = () => {
       </li>
       <li>
         <p>
-         Broadcasts must follow destriptions with pattern shown below (credit: loepare), you can use destription generator above.
+         Broadcasts must follow destriptions with pattern shown below (credit: loepare), you can use the generator above.
         </p>
         <img src={require('./imagedes.webp')} />
       </li>
