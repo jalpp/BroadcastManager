@@ -316,7 +316,7 @@ const SurveyForm = () => {
       </li>
       <li>
         <p>
-         Broadcasts must follow destriptions with pattern shown below (credit: loepare), you can use the generator above.
+         Broadcasts must follow descriptions with pattern shown below (credit: loepare), you can use the generator above.
         </p>
         <img src={require('./imagedes.webp')} />
       </li>
