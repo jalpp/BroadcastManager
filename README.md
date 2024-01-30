@@ -1,9 +1,10 @@
 # BroadcastManager
-Generate Broadcast short and long descriptions and determine which tier the broadcast belongs. The Descriptions are for Lichess Broadcasts, but can be used in any Chess tournament descriptions could be online or OTB.
+Generate Broadcast short and long descriptions and determine which tier the broadcast belongs to. The Descriptions are for Lichess Broadcasts, but can be used in any Chess tournament descriptions could be online or OTB. 
+Broadcast Manager is also a tool that lets user count new broadcasts, learn about how Broadcast on work, and provides quick links.
 
 # Remarks
 
-This site is orginally based on Terminal program Description program which was made in Python see [here](https://github.com/jalpp/BroadcastDescGenerator)
+This site is originally based on the Terminal program Description program which was made in Python see [here](https://github.com/jalpp/BroadcastDescGenerator)
 
 # Run Local
 
@@ -15,7 +16,7 @@ npm start
 
 # Run Build
 
-run build to have production ready folder of the site
+run build to have a production-ready folder of the site
 
 ```
 npm run build 
@@ -23,7 +24,8 @@ npm run build
 ```
 
 # Preview
-![Screen Shot 2023-04-13 at 8 20 48 AM](https://user-images.githubusercontent.com/92553013/231756525-e19b7219-c157-47c4-82f1-d283bba83b36.png)
+![Screen Shot 2024-01-29 at 7 57 50 PM](https://github.com/jalpp/BroadcastManager/assets/92553013/5bf2c063-f304-42d9-ab04-9ec12526d238)
+
 
 
 
