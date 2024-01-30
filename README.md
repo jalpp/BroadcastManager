@@ -1,6 +1,6 @@
 # BroadcastManager
 Generate Broadcast short and long descriptions and determine which tier the broadcast belongs to. The Descriptions are for Lichess Broadcasts, but can be used in any Chess tournament descriptions could be online or OTB. 
-Broadcast Manager is also a tool that lets user count new broadcasts, learn about how Broadcast on work, and provides quick links.
+Broadcast Manager is also a tool that lets users count new broadcasts, learn how Broadcast works, and provide quick links.
 
 # Remarks
 
