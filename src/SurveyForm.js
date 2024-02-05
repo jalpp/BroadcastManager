@@ -61,7 +61,8 @@ const SurveyForm = () => {
 
   function broadcastStylingShort(round, format, timecontrol, startMonth, startDate, endMonth, endDate, topplayer) {
 
-    if(!topplayer.includes("ignore")){
+    if(format === "Swiss" || format=== "Round Robin" && (timecontrol=== "Blitz" || timecontrol==="Rapid" || timecontrol==="Classical")){
+    if(topplayer != "Ignore" ){
     if (startMonth === endMonth && startDate !== endDate) {
       return `${startMonth} ${dateMapping(startDate)} - ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control | ${topplayer}`;
     } else {
@@ -74,6 +75,13 @@ const SurveyForm = () => {
       return `${startMonth} ${dateMapping(startDate)} - ${endMonth} ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control`;
     }
   }
+  }else{
+    if (startMonth === endMonth && startDate !== endDate) {
+      return `${startMonth} ${dateMapping(startDate)} - ${dateMapping(endDate)} | ${round}-round {INSERT FORMAT} | {INSERT TIMECONTROL} time control`;
+    } else {
+      return `${startMonth} ${dateMapping(startDate)} - ${endMonth} ${dateMapping(endDate)} | ${round}-round {INSERT FORMAT} | {INSERT TIMECONTROL} time control`;
+    }
+  }
   }
 
 
@@ -84,11 +92,17 @@ const SurveyForm = () => {
       } else {
         return `The ${name} is a ${round}-round ${format} tournament held from the ${dateMapping(startDate)} ${startMonth} to the ${dateMapping(endDate)} ${endMonth} in ${location} \n\n ${extra} \n\n [Offical Website]() | [Results]()`;
       }
-    } else {
+    } else if(format === "Round Robin"){
        if (startMonth === endMonth && startDate !== endDate) {
         return `The ${name} is a ${playercount}-player ${format} tournament held from the ${dateMapping(startDate)} to the ${dateMapping(endDate)} of ${startMonth} in ${location} \n\n ${extra} \n\n [Offical Website]() | [Results]()`;
       } else {
         return `The ${name} is a ${playercount}-player ${format} tournament held from the ${dateMapping(startDate)} ${startMonth} to the ${dateMapping(endDate)} ${endMonth} in ${location} \n\n ${extra} \n\n [Offical Website]() | [Results]()`;
+      }
+    }else{
+      if (startMonth === endMonth && startDate !== endDate) {
+        return `The ${name} is a ${playercount}-player {INSERT FORMAT} tournament held from the ${dateMapping(startDate)} to the ${dateMapping(endDate)} of ${startMonth} in ${location} \n\n ${extra} \n\n [Offical Website]() | [Results]()`;
+      } else {
+        return `The ${name} is a ${playercount}-player {INSERT FORMAT} tournament held from the ${dateMapping(startDate)} ${startMonth} to the ${dateMapping(endDate)} ${endMonth} in ${location} \n\n ${extra} \n\n [Offical Website]() | [Results]()`;
       }
     }
   }
@@ -99,6 +113,7 @@ const SurveyForm = () => {
   
     const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
+    console.log(tournamentFormat);
     const startdate = new Date(parsedatestart.split('-'));
     const enddate = new Date(parsedateend.split('-'));
     const concatString = broadcastStylingShort(rounds, tournamentFormat, timeControl, monthNames[startdate.getMonth()], startdate.getDate(), monthNames[enddate.getMonth()], enddate.getDate(), topplayer);
@@ -123,6 +138,7 @@ const SurveyForm = () => {
     setExtra("");
     setGmCount("");
     setplayer2700("");
+    setTopPlayer("");
   };
 
   return (
@@ -205,6 +221,7 @@ const SurveyForm = () => {
         <label htmlFor="tournament-format">Tournament Format:</label>
       
         <select id="tf" onChange={(event) => setTournamentFormat(event.target[event.target.selectedIndex].getAttribute('label'))}>
+        <option label="Select">Select</option>
         <option label="Swiss">Swiss</option>
         <option label="Round Robin">Round Robin</option>
         </select>
@@ -213,6 +230,7 @@ const SurveyForm = () => {
         <label htmlFor="time-control">Time Control:</label>
 
         <select id="tc" onChange={(event) => setTimeControl(event.target[event.target.selectedIndex].getAttribute('label'))}>
+        <option label="Select">Select</option>
         <option label="Rapid">Rapid</option>
         <option label="Blitz">Blitz</option>
         <option label="Classical">Classical</option>
