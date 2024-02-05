@@ -17,6 +17,9 @@ const SurveyForm = () => {
   const [gmCount, setGmCount] = useState("");
   const [player2700, setplayer2700] = useState("");
   const [tierstring, setTierString] = useState("");
+  const [parsedatestart, setDateStart] = useState("");
+  const [parsedateend, setDateEnd] = useState("");
+  const [topplayer, setTopPlayer] = useState("");
 
 
 
@@ -31,6 +34,10 @@ const SurveyForm = () => {
     }else{
       return 'Normal tier'
     }
+  }
+
+  function reload(){
+    window.location.reload();
   }
 
 
@@ -52,13 +59,21 @@ const SurveyForm = () => {
 
   
 
-  function broadcastStylingShort(round, format, timecontrol, startMonth, startDate, endMonth, endDate) {
-    
+  function broadcastStylingShort(round, format, timecontrol, startMonth, startDate, endMonth, endDate, topplayer) {
+
+    if(!topplayer.includes("ignore")){
+    if (startMonth === endMonth && startDate !== endDate) {
+      return `${startMonth} ${dateMapping(startDate)} - ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control | ${topplayer}`;
+    } else {
+      return `${startMonth} ${dateMapping(startDate)} - ${endMonth} ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control | ${topplayer}`;
+    }
+  }else{
     if (startMonth === endMonth && startDate !== endDate) {
       return `${startMonth} ${dateMapping(startDate)} - ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control`;
     } else {
       return `${startMonth} ${dateMapping(startDate)} - ${endMonth} ${dateMapping(endDate)} | ${round}-round ${format} | ${timecontrol} time control`;
     }
+  }
   }
 
 
@@ -80,9 +95,17 @@ const SurveyForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const concatString = broadcastStylingShort(rounds, tournamentFormat, timeControl, monthStart, startDate, monthEnd, endDate);
-    const longstring = broadcastStylingLong(tournamentName, playerCount, tournamentLocation, extra, rounds, tournamentFormat, monthStart, startDate, monthEnd, endDate);
+
+  
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+    const startdate = new Date(parsedatestart.split('-'));
+    const enddate = new Date(parsedateend.split('-'));
+    const concatString = broadcastStylingShort(rounds, tournamentFormat, timeControl, monthNames[startdate.getMonth()], startdate.getDate(), monthNames[enddate.getMonth()], enddate.getDate(), topplayer);
+    const longstring = broadcastStylingLong(tournamentName, playerCount, tournamentLocation, extra, rounds, tournamentFormat, monthNames[startdate.getMonth()], startdate.getDate(), monthNames[enddate.getMonth()], enddate.getDate());
     const determineTier = getTier(gmCount, player2700);
+   
+   
 
     setTierString(determineTier);
     setConcatenatedString(concatString);
@@ -123,6 +146,23 @@ const SurveyForm = () => {
         />
       </div>
       <div>
+        <label htmlFor="top-player">Select Top Player Playing</label>
+
+        <select id="tc" onChange={(event) => setTopPlayer(event.target[event.target.selectedIndex].getAttribute('label'))}>
+        <option label="Ignore">Ignore</option>
+        <option label="Magnus Carlsen">Magnus Carlsen</option>
+        <option label="Fabi Caruana">Fabi </option>
+        <option label="Hikaru Nakamura">Hikaru</option>
+        <option label="Ding Liren">Ding Liren</option>
+        <option label="Anish Giri">Anish Giri </option>
+        <option label="Alireza Firouja">Alireza Firouja</option>
+        <option label="Ian Nepo"> Ian Nepo</option>
+        <option label="Wesley So"> Wesley So</option>
+        <option label="Wei Yi"> Wei Yi</option>
+    
+      </select>
+      </div>
+      <div>
         <label htmlFor="gm-count">GMs Count:</label>
         <input
           type="number"
@@ -160,61 +200,44 @@ const SurveyForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="tournament-format">Tournament Format (Swiss/Round Robin):</label>
-        <input
-          type="text"
-          id="tournament-format"
-          value={tournamentFormat}
-          onChange={(event) => setTournamentFormat(event.target.value)}
-        />
+        <label htmlFor="tournament-format">Tournament Format:</label>
+      
+        <select id="tf" onChange={(event) => setTournamentFormat(event.target[event.target.selectedIndex].getAttribute('label'))}>
+        <option label="Swiss">Swiss</option>
+        <option label="Round Robin">Round Robin</option>
+        </select>
       </div>
       <div>
-        <label htmlFor="time-control">Time Control (Rapid/Blitz):</label>
-        <input
-          type="text"
-          id="time-control"
-          value={timeControl}
-          onChange={(event) => setTimeControl(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="month-start">Start Month Name (Sep/Jan):</label>
-        <input
-          type="text"
-          id="month-start"
-          value={monthStart}
-          onChange={(event) => setMonthStart(event.target.value)}
-        />
+        <label htmlFor="time-control">Time Control:</label>
+
+        <select id="tc" onChange={(event) => setTimeControl(event.target[event.target.selectedIndex].getAttribute('label'))}>
+        <option label="Rapid">Rapid</option>
+        <option label="Blitz">Blitz</option>
+        <option label="Classical">Classical</option>
+    
+      </select>
       </div>
 
-       <div>
-        <label htmlFor="start-date">Start Date(1-31):</label>
+      <div>
+        <label htmlFor="parse-date-start"> Pick Start Date</label>
         <input
-          type="number"
-          id="start-date"
-          value={startDate}
-          onChange={(event) => setStartDate(event.target.value)}
+        type="date"
+        id="parse-date-start"
+        value={parsedatestart}
+        onChange={(event) => setDateStart(event.target.value)}
         />
       </div>
 
       <div>
-        <label htmlFor="month-end">End Month Name (Sep/Jan):</label>
+        <label htmlFor="parse-date-end"> Pick End Date</label>
         <input
-          type="text"
-          id="month-end"
-          value={monthEnd}
-          onChange={(event) => setMonthEnd(event.target.value)}
+        type="date"
+        id="parse-date-end"
+        value={parsedateend}
+        onChange={(event) => setDateEnd(event.target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="end-date">End Date(1-31):</label>
-        <input
-          type="number"
-          id="end-date"
-          value={endDate}
-          onChange={(event) => setEndDate(event.target.value)}
-        />
-      </div>
+      
       <div>
         <label htmlFor="extra">Extra Information (time per move/player names):</label>
         <input
