@@ -57,8 +57,6 @@ const SurveyForm = () => {
   }
 
 
-  
-
   function broadcastStylingShort(round, format, timecontrol, startMonth, startDate, endMonth, endDate, topplayer) {
 
     if(format === "Swiss" || format=== "Round Robin" && (timecontrol=== "Blitz" || timecontrol==="Rapid" || timecontrol==="Classical")){
@@ -268,7 +266,7 @@ const SurveyForm = () => {
         />
       </div>
       
-    <button type="submit">Submit</button>
+    <button type="submit">Generate</button>
     <p> Your Short Description</p>
     <b></b>
     {concatenatedString && <p>{concatenatedString}</p>}
