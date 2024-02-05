@@ -140,6 +140,8 @@ const SurveyForm = () => {
         <label htmlFor="player-count">Player Count:</label>
         <input
           type="number"
+          min="1"
+          max="30"
           id="player-count"
           value={playerCount}
           onChange={(event) => setPlayerCount(event.target.value)}
